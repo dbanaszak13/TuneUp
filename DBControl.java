@@ -1,6 +1,7 @@
 /**
  * Created by mohammedawan on 3/28/18.
  */
+package tuneup;
 import java.io.*;
 import java.util.*;
 import java.sql.*;
@@ -59,16 +60,39 @@ public class DBControl {
         return songsList;
     }
 
+    public ArrayList<User> getUserList() throws SQLException{
+        ArrayList<User> userList = new ArrayList<>();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Account");
+        while(rs.next()){
+            User tmp = new User(rs.getString(2), rs.getString(3), rs.getString(7), rs.getString(4), rs.getString(5), rs.getString(6));
+            userList.add(tmp);
+        }
+        return userList;
+    }
+
     public User getUser(String username) throws SQLException{
         String sql = "SELECT * FROM Account WHERE Username = '" + username + "';";
         ResultSet rs = stmt.executeQuery(sql);
-        User tmp = new User(rs.getString(2), rs.getString(3), "", rs.getString(4), rs.getString(5), rs.getString(5));
+        User tmp = null;
+        if (!rs.isBeforeFirst() ) {
+        }else {
+            rs.next();
+            tmp = new User(rs.getString(2), rs.getString(3), rs.getString(7), rs.getString(4), rs.getString(5), rs.getString(5));
+        }
         return tmp;
     }
 
     public void addSong(Song song) throws SQLException{
         String sql = "INSERT INTO Song (SongName, Artist, Genre, Description, Rating, TotalRatings, filepath) VALUE ('" + song.getName() + "','" + song.getArtist() + "','" + song.getGenre() + "','" + song.getDescription() + "',0,0,'" + song.getMp3File() + "');";
         stmt.executeUpdate(sql);
+    }
+
+    public int getMostRecentSongID() throws SQLException{
+        String sql = "SELECT MAX(SID) From Song;";
+        ResultSet rs = stmt.executeQuery(sql);
+        rs.next();
+        int sid = rs.getInt(1);
+        return sid;
     }
 
     public void deleteSong(Song song) throws SQLException{
@@ -96,19 +120,19 @@ public class DBControl {
         return song;
     }
 
-    public void addMp3() throws SQLException, IOException{
-        String sql = "UPDATE Song set mp3=? WHERE SID = 3;" ;
+    public void addMp3(int SID, String filepath) throws SQLException, IOException{
+        String sql = "UPDATE Song set mp3=? WHERE SID = " + Integer.toString(SID) + ";";
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        File newFile = new File("fire.mp3");
+        File newFile = new File(filepath);
         FileInputStream input = new FileInputStream(newFile);
         pstmt.setBinaryStream(1,input);
         pstmt.executeUpdate();
 
     }
 
-    public void getMp3() throws SQLException, IOException{
+    public void getMp3(int SID) throws SQLException, IOException{
         ResultSet rs = null;
-        String sql = "SELECT mp3 FROM Song WHERE SID = 3;" ;
+        String sql = "SELECT mp3 FROM Song WHERE SID = " + Integer.toString(SID) + ";" ;
         PreparedStatement pstmt = conn.prepareStatement(sql);
         rs = pstmt.executeQuery(sql);
         File file = new File("tmp.mp3");
@@ -120,6 +144,17 @@ public class DBControl {
                 fos.write(buffer);
             }
         }
+    }
+
+    public String userLogin(User user) throws SQLException {
+        User checkUser = getUser(user.getUsername());
+        if(checkUser == null){
+            return "This user doesn't exist";
+        }
+        else if(checkUser.getPassword().equals(user.getPassword())){
+            return "Logged in!!";
+        }
+        return "Incorrect Password entered";
 
     }
 
