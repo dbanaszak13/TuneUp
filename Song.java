@@ -1,6 +1,8 @@
 /**
  * Created by mohammedawan on 3/28/18.
  */
+package tuneup;
+
 public class Song {
     private String name;
     private String artist;
