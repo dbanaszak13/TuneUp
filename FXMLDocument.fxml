@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleButtonAction" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: TRANSPARENT;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tuneup.FXMLDocumentController">
+    <children>
+      <AnchorPane layoutX="-9.0" layoutY="-10.0" prefHeight="732.0" prefWidth="1091.0" style="-fx-background-color: #e0e0f9#e0e0f9;">
+         <children>
+            <Pane prefHeight="85.0" prefWidth="1110.0" style="-fx-background-color: #31319b#31319b;">
+               <children>
+                  <ImageView fitHeight="84.0" fitWidth="242.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../Downloads/IMG_2991.jpg" />
+                     </image>
+           </ImageView>
+                  <JFXTextField fx:id="textField_search" layoutX="269.0" layoutY="29.0" prefHeight="38.0" prefWidth="511.0" promptText="Search" style="-fx-background-color: #e8e8ea#e8e8ea;" unFocusColor="#f5f2f2" />
+                  <Button fx:id="btn_signIn" layoutX="873.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" text="Sign In" />
+                  <Button fx:id="btn_upload" layoutX="971.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#handleButtonAction" text="Upload" />
+                  <MaterialDesignIconView fx:id="btn_search" glyphName="MAGNIFY" layoutX="232.0" layoutY="59.0" onMouseClicked="#handleButtonAction" size="30" />
+                  <MaterialDesignIconView fx:id="btn_close" fill="#fcf9f9" glyphName="CLOSE" layoutX="1059.0" layoutY="37.0" onMouseClicked="#handleButtonAction" size="25" />
+               </children>
+            </Pane>
+            <Separator layoutX="6.0" layoutY="639.0" prefHeight="3.0" prefWidth="1104.0" style="-fx-background-color: black;" />
+            <Pane layoutX="-2.0" layoutY="642.0" prefHeight="90.0" prefWidth="1111.0" style="-fx-background-color: #31319b#31319b;">
+               <children>    
+                  <MaterialDesignIconView fx:id="btn_play" glyphName="PLAY" layoutX="31.0" layoutY="59.0" onMouseClicked="#handleButtonAction" size="30" />
+                  <MaterialDesignIconView fx:id="btn_pause" glyphName="PAUSE" layoutX="66.0" layoutY="59.0" onMouseClicked="#handleButtonAction" size="30" />
+                  <JFXProgressBar fx:id="progress" layoutX="116.0" layoutY="45.0" onMouseClicked="#handleButtonAction" prefHeight="3.0" prefWidth="547.0" />
+                  <MaterialDesignIconView glyphName="SPEAKER" layoutX="740.0" layoutY="58.0" size="30" />
+                  <JFXSlider fx:id="volume" layoutX="813.0" layoutY="39.0" onDragDetected="#handleButtonAction" prefHeight="15.0" prefWidth="187.0" />
+                  <Label fx:id="lbl_time" layoutX="686.0" layoutY="38.0" text="Label" />
+               </children>
+            </Pane>
+            <Separator layoutX="-6.0" layoutY="85.0" prefHeight="3.0" prefWidth="1116.0" style="-fx-background-color: black;" />
+            <TableView fx:id="songsList" layoutX="202.0" layoutY="103.0" prefHeight="522.0" prefWidth="857.0">
+              <columns>
+                <TableColumn prefWidth="268.5" text="Song" />
+                <TableColumn prefWidth="268.0" text="Artist" />
+                  <TableColumn prefWidth="319.0" text="Genre" />
+              </columns>
+            </TableView>
+            <MaterialDesignIconView fx:id="btn_profile" glyphName="PERSON" layoutX="83.0" layoutY="138.0" size="30" />
+            <Label layoutX="65.0" layoutY="146.0" text="Profile">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="btn_music" layoutX="113.0" layoutY="190.0" text="Music">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="btn_artists" layoutX="114.0" layoutY="236.0" text="Artists">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="btn_uploads" layoutX="114.0" layoutY="288.0" text="Uploads">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="btn_ratings" layoutX="117.0" layoutY="340.0" text="Ratings">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Separator layoutX="93.0" layoutY="192.0" orientation="VERTICAL" prefHeight="172.0" prefWidth="6.0" style="-fx-background-color: black;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane_signIn" layoutX="793.0" onMouseClicked="#handleButtonAction" prefHeight="602.0" prefWidth="287.0" style="-fx-background-color: #e8e8ea#e8e8ea;" visible="false">
+         <children>
+            <Pane layoutY="1.0" prefHeight="74.0" prefWidth="287.0" style="-fx-background-color: #31319b#31319b;">
+               <children>
+                  <Label layoutX="34.0" layoutY="19.0" text="Sign In" textFill="WHITE">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <MaterialDesignIconView fx:id="btn_closeSignIn" fill="#fcf9f9" glyphName="CLOSE" layoutX="259.0" layoutY="23.0" onMouseClicked="#handleButtonAction" size="25" />
+               </children>
+            </Pane>
+            <Separator layoutY="75.0" prefHeight="4.0" prefWidth="287.0" style="-fx-background-color: black;" />
+            <Label layoutX="33.0" layoutY="88.0" text="Username:" textFill="#7b7b7c">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <JFXTextField layoutX="68.0" layoutY="109.0" promptText="JSmith" />
+            <Label layoutX="36.0" layoutY="150.0" text="Password:" textFill="#7b7b7c">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <JFXPasswordField layoutX="68.0" layoutY="176.0" promptText="password" />
+            <Button layoutX="175.0" layoutY="219.0" mnemonicParsing="false" text="Sign In" />
+            <Separator layoutY="259.0" prefHeight="4.0" prefWidth="287.0" style="-fx-background-color: black;" />
+            <Pane layoutY="263.0" prefHeight="46.0" prefWidth="287.0" style="-fx-background-color: #31319b#31319b;">
+               <children>
+                  <Label layoutX="45.0" layoutY="6.0" text="SignUp" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="19.0" layoutY="316.0" text="First Name:" textFill="#7b7b7c">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="20.0" layoutY="365.0" text="Last Name:" textFill="#7b7b7c">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="413.0" text="DOB:" textFill="#7b7b7c">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="459.0" text="Username:" textFill="#7b7b7c">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="506.0" text="Password:" textFill="#7b7b7c">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <JFXTextField layoutX="60.0" layoutY="334.0" promptText="John" />
+            <JFXTextField layoutX="63.0" layoutY="385.0" promptText="Smith" />
+            <JFXDatePicker layoutX="64.0" layoutY="429.0" />
+            <JFXTextField layoutX="64.0" layoutY="477.0" promptText="JSmith123" />
+            <JFXTextField layoutX="63.0" layoutY="525.0" promptText="password" />
+            <Button layoutX="178.0" layoutY="566.0" mnemonicParsing="false" text="SignUp" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane_upload" layoutX="1.0" layoutY="591.0" onMouseClicked="#handleButtonAction" prefHeight="129.0" prefWidth="785.0" style="-fx-background-color: #e8e8ea#e8e8ea;" visible="false">
+         <children>
+            <Pane layoutX="-1.0" layoutY="-1.0" prefHeight="35.0" prefWidth="787.0" style="-fx-background-color: #31319b#31319b;">
+               <children>
+                  <Label layoutX="32.0" layoutY="2.0" text="Upload" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <MaterialDesignIconView fx:id="btn_closeUpload" fill="#fcf9f9" glyphName="CLOSE" layoutX="758.0" layoutY="27.0" onMouseClicked="#handleButtonAction" size="25" />
+               </children>
+            </Pane>
+            <JFXTextField layoutX="47.0" layoutY="59.0" prefHeight="38.0" prefWidth="473.0" promptText="File Path" style="-fx-background-color: #e8e8ea#e8e8ea;" unFocusColor="#0a0000" />
+            <Button layoutX="556.0" layoutY="70.0" mnemonicParsing="false" text="Browse" />
+            <Button layoutX="657.0" layoutY="71.0" mnemonicParsing="false" text="Upload" />
+            <Separator layoutX="-1.0" layoutY="33.0" prefHeight="4.0" prefWidth="787.0" style="-fx-background-color: black;" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
